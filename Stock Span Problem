@@ -1,0 +1,44 @@
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+class GFG {
+	public static void main (String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int t = sc.nextInt();
+		while(t!=0)
+		{
+		    int n = sc.nextInt();
+		    int res =0;
+		    int[] arr = new int[n];
+		    for(int i =0;i<n;i++)
+		    {
+		        arr[i]=sc.nextInt();
+		    }
+		    Stack<Integer> s = new Stack<Integer>();
+		    for(int i =0;i<n;i++)
+		    {
+		        int h =0;
+		        boolean flag = false;
+		        while(!(s.empty() || flag))
+		        {
+		            if(arr[i]>=arr[s.peek()])
+		            s.pop();
+		            else
+		            flag = true;
+		        }
+		        
+		        if(s.empty())
+		        h=-1;
+		        else
+		        h=s.peek();
+		        res=i-h;
+		        s.push(i);
+		        System.out.print(res+" ");
+		    }
+		    System.out.println();
+		    t--;
+		}
+	}
+}
