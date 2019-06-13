@@ -1,0 +1,57 @@
+import java.util.*;
+import java.util.HashMap;
+
+
+class TestClass {
+    public static void main(String args[] ) throws Exception {
+        
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int[] arr = new int[n];
+       
+        int max =-1;
+        for(int i =0;i<n;i++)
+        {
+            arr[i]= sc.nextInt();
+            if(arr[i]>max)
+            max=arr[i];
+            
+        }
+         int[] arrs = new int[max+1];
+         for(int i =0;i<max+1;i++)
+         {
+             arrs[i]=-1;
+         }
+        Stack<Integer> st = new Stack<Integer>();
+       // HashMap<Integer,Integer> hm = new HashMap<Integer,Integer>();
+        
+        for(int i =0;i<n;i++)
+        {
+            if(st.empty())
+            {
+                st.push(arr[i]);
+                continue;
+            }
+            
+            while(st.empty() == false && arr[i]>st.peek())
+            {
+                arrs[st.peek()] = arr[i];
+                st.pop();
+            }
+            st.push(arr[i]);
+        }
+        
+       /* while(st.empty()==false)
+        {
+            hm.put(st.peek(),-1);
+            st.pop();
+        }*/
+        
+        for(int i=0;i<n;i++)
+        {
+            int k = arr[i];
+            System.out.print(arrs[k]+" ");
+        }
+
+    }
+}
