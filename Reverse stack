@@ -1,0 +1,41 @@
+import java.io.*;
+import java.util.*;
+
+class GFG {
+    static Stack<Integer> st;
+    static void insertAtBottom(int x)
+    {
+        if(st.empty())
+        {
+        st.push(x);
+        return;
+        }
+        int temp = st.pop();
+        insertAtBottom(x);
+        st.push(temp);
+    }
+    static void ReverseStack()
+    {
+        if(st.empty())
+        return;
+        
+        int x = st.pop();
+        ReverseStack();
+        insertAtBottom(x);
+    }
+	public static void main (String[] args) {
+	    Scanner sc = new Scanner(System.in);
+	    int n = sc.nextInt();
+	    st = new Stack<Integer>();
+	    for(int i =0;i<n;i++)
+	    {
+	        st.push(sc.nextInt());
+	    }
+	    ReverseStack();
+	    while(st.empty()==false)
+	    {
+	        System.out.print(st.pop()+" ");
+	    }
+		
+	}
+}
